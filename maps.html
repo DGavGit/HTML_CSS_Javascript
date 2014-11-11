@@ -63,6 +63,19 @@
           // To add the marker to the map, use the 'map' property
           var phMarker = new google.maps.Marker(phMarkerOptions);
 
+          //Shark
+          var sharkPosition = new google.maps.LatLng(21.3034765, -157.9665984,15);
+
+          var sharkMarkerOptions = {
+              position: sharkPosition,
+              map: map,
+              title:"#sharkweek",
+              icon: 'http://www.pixeljoint.com/files/icons/smiling_shark.gif' //url to images
+          };
+
+          // To add the marker to the map, use the 'map' property
+          var sharkMarker = new google.maps.Marker(sharkMarkerOptions);
+
 
 
       }
