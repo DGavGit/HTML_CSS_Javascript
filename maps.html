@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script>
+      var map;
+      var initialize = function() {
+        var mapOptions = {
+          zoom: 13,
+          center: new google.maps.LatLng(21.3272214, -157.9607097)
+        };
+        var map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+
+        var myLatlng = new google.maps.LatLng(21.3272214, -157.9607097);
+
+        //airport
+          var airportposition = new google.maps.LatLng(21.324513, -157.925074);
+
+          var markerOptions = {
+              position: airportposition,
+              map: map,
+              title:"Fly Away and B Free",
+              icon: 'http://aircharterguide.com/Images/Icons/AirportIcon.png' //url to images
+          };
+
+          // To add the marker to the map, use the 'map' property
+          var marker = new google.maps.Marker(markerOptions);
+
+        //golf
+          var golfPosition = new google.maps.LatLng(21.326459, -158.01347,17);
+
+          var golfMarkerOptions = {
+              position: golfPosition,
+              map: map,
+              title:"Golf Away and B Free",
+              icon: 'http://www.bestvillas.us/images/Golf-icon.png' //url to images
+          };
+
+          // To add the marker to the map, use the 'map' property
+          var golfMarker = new google.maps.Marker(golfMarkerOptions);
+
+          //Pearl Harbor
+          var phPosition = new google.maps.LatLng(21.3445068, -157.9748912,15);
+
+          var phMarkerOptions = {
+              position: phPosition,
+              map: map,
+              title:"Pearl Harbor",
+              icon: 'https://cdn2.iconfinder.com/data/icons/3_Minicons-Free-_Pack/46/ship.png' //url to images
+          };
+
+          // To add the marker to the map, use the 'map' property
+          var phMarker = new google.maps.Marker(phMarkerOptions);
+
+
+
+      }
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+  </head>
+  <body>
+    <div id="map-canvas"></div>
+  </body>
+</html>
