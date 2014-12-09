@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>instagram</title>
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/async/0.9.0/async.js"></script>
+		<script src="http://code.highcharts.com/highcharts.js"></script>
+		<script src="http://code.highcharts.com/modules/exporting.js"></script>
+		<script>	
+			$(function () {
+		    $(document).ready(function () {
+		    //This is where I'm going to be putting the clicked actions
+		    var SIOclick =0;
+		   	$(".SIO-button").click(function(){
+
+		   		//get the id of the element clicked on
+		   		var elementID = $(this).attr("id");
+		   		displayChart(elementID, "#container");
+		   		$("div#container").removeClass("hidden").addClass("visible");
+		   	});
+		   	$(".AATB-button").click(function(){
+		   		var elementID = $(this).attr("id");
+		   		displayChart2(elementID, "#container2")
+		   		$("div#container2").removeClass("hidden").addClass("visible");
+		   	});
+		    //where I draw data from the api
+		    var getRate = function(elementID, callback) {
+
+
+				    async.auto({
+
+					get_json_pop1: function(callback) {
+						$.getJSON("http://cooper-union-search-proxy.herokuapp.com/twitter/search/shake%20it%20off", function(response){
+							callback(null, response);
+						});
+					},
+					get_json_pop2: function(callback) {
+						$.getJSON("http://cooper-union-search-proxy.herokuapp.com/twitter/search/all%20about%20that%20bass", function(response){
+							callback(null, response);
+						});
+					},
+					get_json_pop3: function(callback) {
+						$.getJSON("http://cooper-union-search-proxy.herokuapp.com/twitter/search/habits%20stay%20high", function(response){
+							callback(null, response);
+						});
+					},
+					get_json_pop4: function(callback) {
+						$.getJSON("http://cooper-union-search-proxy.herokuapp.com/twitter/search/black%20widow", function(response){
+							callback(null, response);
+						});
+					},
+					get_json_pop5: function(callback) {
+						$.getJSON("http://cooper-union-search-proxy.herokuapp.com/twitter/search/love%20me%20harder", function(response){
+							callback(null, response);
+						});
+					},
+					get_json_chr1: function(callback) {
+						$.getJSON("http://cooper-union-search-proxy.herokuapp.com/twitter/search/all%20I%20want%20for%20christmas%20is%20you", function(response){
+							callback(null, response);
+						});
+					},
+					get_json_chr2: function(callback) {
+						$.getJSON("http://cooper-union-search-proxy.herokuapp.com/twitter/search/do%20you%20want%20to%20build%20a%20snowman", function(response){
+							callback(null, response);
+						});
+					},
+					get_json_chr3: function(callback) {
+						$.getJSON("http://cooper-union-search-proxy.herokuapp.com/twitter/search/rockin'%20around%20the%20christmas%20tree", function(response){
+							callback(null, response);
+						});
+					},
+					get_json_chr4: function(callback) {
+						$.getJSON("http://cooper-union-search-proxy.herokuapp.com/twitter/search/jingle%20bell%20rock", function(response){
+							callback(null, response);
+						});
+					},
+					get_json_chr5: function(callback) {
+						$.getJSON("http://cooper-union-search-proxy.herokuapp.com/twitter/search/feliz%20navidad", function(response){
+							callback(null, response);
+						});
+					}
+				}, function(err, results) {
+				    // console.log(results.get_json_pop1.statuses[0].text);
+				    // console.log(results);
+				    if(elementID === 1) {
+				    	var song = results.get_json_pop1.statuses;
+				    } else if(elementID === 2) {
+				    	var song = results.get_json_pop2.statuses;
+
+				    }
+
+				    // if(dataSet === 1) {
+				    // var song = results.get_json_pop1.statuses;
+				    var songTimes = [];
+				    var songUTCTimes = [];
+				    var intTimes = [];
+				    var songTimeDiff;
+				    var floor = Math.floor;
+				    for(i in song) {
+				    	songTimes.push(song[i].created_at);
+				    	var timeString = new Date(song[i].created_at);
+				    	var utcTime = Date.parse(timeString);
+				    	songUTCTimes.push(utcTime);
+				    	console.log(utcTime);
+				    }
+
+				    for(i = 0; i<songUTCTimes.length; i++){
+				    	intTimes[i] = floor(songUTCTimes[i]);
+				    	console.log(intTimes[i]);
+				    }
+				    intTimes.sort();
+				    songTimeDiff = intTimes[14]-intTimes[0];
+				    humanReadable = ((songTimeDiff*.001)/15)*60;
+				    console.log(songTimeDiff, humanReadable)
+
+				    callback(humanReadable);
+					// } else {
+				 //    var song2 = results.get_json_pop2.statuses;
+				 //    var song2Times = [];
+				 //    var song2UTCTimes = [];
+				 //    var int2Times = [];
+				 //    var song2TimeDiff;
+				 //    var floor2 = Math.floor;
+				 //    for(i in song2) {
+				 //    	song2Times.push(song2[i].created_at);
+				 //    	var timeString = new Date(song2[i].created_at);
+				 //    	var utcTime = Date.parse(timeString);
+				 //    	song2UTCTimes.push(utcTime);
+				 //    	console.log(utcTime);
+				 //    }
+
+				 //    for(i = 0; i<song2UTCTimes.length; i++){
+				 //    	int2Times[i] = floor2(song2UTCTimes[i]);
+				 //    	console.log(int2Times[i]);
+				 //    }
+				 //    int2Times.sort();
+				 //    song2TimeDiff = int2Times[14]-int2Times[0];
+				 //    humanReadable2 = ((song2TimeDiff*.001)/15)*60;
+				 //    console.log(song2TimeDiff, humanReadable2)
+
+				 //    callback(humanReadable2);
+					// }
+				});
+			} //end function getRate()
+		        Highcharts.setOptions({
+		            global: {
+		                useUTC: false
+		            },
+		            colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
+		        });
+		        var displayChart = function(id, container){
+		        $(container).highcharts({
+		            chart: {
+		                type: 'spline',
+		                animation: Highcharts.svg, // don't animate in old IE
+		                marginRight: 10,
+		                //backgroundColor: '#E67E22',
+		                events: {
+		                    load: function () {
+
+		                        // set up the updating of the chart each second
+		                        var series = this.series[0];
+		                        setInterval(function () {
+		 
+		                        	getRate(id, function(humanReadable){
+		                        		console.log("The callback worked, and the rate for chart1 is:", humanReadable);	
+		        					    var x = (new Date()).getTime(), // current time
+		                                y = humanReadable;
+		                            	series.addPoint([x, y], true, true);
+		                            	// console.log(series)
+		                        	});
+		       
+		                        }, 10000);
+		                    }
+		                }
+		            },
+		            title: {
+		                text: 'Shake it Off',
+		                style: {"color":'#2c3e50', "fontsize": '16px'}
+		            },
+		            xAxis: {
+		            	title:{
+		            		text: 'Time'
+		            	},
+		                type: 'datetime',
+		                //lineColor: '#ecf0f1',
+		                tickPixelInterval: 150
+		            },
+		            plotOptions:{
+		            	line: {
+		            		//color: '#ecf0f1'
+		            	}
+		            },
+		            spline: {
+		            	//color: '#ecf0f1'
+		            },
+		            yAxis: {
+		                title: {
+		                    text: 'Tweets per min.'
+		                },
+		                //lineColor: '#ecf0f1',
+		                plotLines: [{
+		                    value: 0,
+		                    width: 1,
+		                    //color: '#ecf0f1'
+		                }]
+		            },
+		            tooltip: {
+		                formatter: function () {
+		                    return '<b>' + this.series.name + '</b><br/>' +
+		                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+		                        Highcharts.numberFormat(this.y, 2);
+		                }
+		            },
+		            legend: {
+		                enabled: false
+		            },
+		            exporting: {
+		                enabled: false
+		            },
+		            series: [{
+		                name: 'AATB',
+		                data: (function(){
+		                	        getRate(id, function(humanReadable){
+		                        		console.log("The callback worked, and the rate for chart1 is:", humanReadable);	
+		        					    var x = (new Date()).getTime(), // current time
+		                                y = humanReadable;
+		                            	return [{x:x, y:humanReadable}];
+		                            	// console.log(series)
+		                        	});
+		                        return [{x:(new Date()).getTime(), y:0},{x:(new Date()).getTime(), y:0},{x:(new Date()).getTime(), y:0},{x:(new Date()).getTime(), y:0},{x:(new Date()).getTime(), y:0},{x:(new Date()).getTime(), y:0},{x:(new Date()).getTime(), y:0}]
+		                		//return [{x:10,y:15},{x:15,y:20},{x:20,y:25}]
+		                })()
+		            }]
+		        });
+				} //end of display chart 1
+				var displayChart2 = function(id, container){
+		        $(container).highcharts({
+		            chart: {
+		                type: 'spline',
+		                animation: Highcharts.svg, // don't animate in old IE
+		                marginRight: 10,
+		                //backgroundColor: '#E67E22',
+		                events: {
+		                    load: function () {
+
+		                        // set up the updating of the chart each second
+		                        var series = this.series[0];
+		                        setInterval(function () {
+		 
+		                        	getRate(id,function(humanReadable){
+		                        		console.log("The callback worked, and the rate for chart2 is:", humanReadable);	
+		        					    var x = (new Date()).getTime(), // current time
+		                                y = humanReadable;
+		                            	series.addPoint([x, y], true, true);
+		                            	// console.log(series)
+		                        	});
+		       
+		                        }, 10000);
+		                    }
+		                }
+		            },
+		            title: {
+		                text: 'All About that Bass',
+		                style: {"color":'#2c3e50', "fontsize": '16px'}
+		            },
+		            xAxis: {
+		            	title:{
+		            		text: 'Time'
+		            	},
+		                type: 'datetime',
+		                //lineColor: '#ecf0f1',
+		                tickPixelInterval: 150
+		            },
+		            plotOptions:{
+		            	line: {
+		            		//color: '#ecf0f1'
+		            	}
+		            },
+		            spline: {
+		            	//color: '#ecf0f1'
+		            },
+		            yAxis: {
+		                title: {
+		                    text: 'Tweets per min.'
+		                },
+		                //lineColor: '#ecf0f1',
+		                plotLines: [{
+		                    value: 0,
+		                    width: 1,
+		                    //color: '#ecf0f1'
+		                }]
+		            },
+		            tooltip: {
+		                formatter: function () {
+		                    return '<b>' + this.series.name + '</b><br/>' +
+		                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+		                        Highcharts.numberFormat(this.y, 2);
+		                }
+		            },
+		            legend: {
+		                enabled: false
+		            },
+		            exporting: {
+		                enabled: false
+		            },
+		            series: [{
+		                name: 'SIO',
+		                data: (function(){
+		                	        getRate(id,function(humanReadable){
+		                        		console.log("The callback worked, and the rate for chart2 is:", humanReadable);	
+		        					    var x = (new Date()).getTime(), // current time
+		                                y = humanReadable;
+		                            	return [{x:x, y:humanReadable}];
+		                            	// console.log(series)
+		                        	});
+		                        return [{x:(new Date()).getTime(), y:0},{x:(new Date()).getTime(), y:0},{x:(new Date()).getTime(), y:0},{x:(new Date()).getTime(), y:0},{x:(new Date()).getTime(), y:0},{x:(new Date()).getTime(), y:0},{x:(new Date()).getTime(), y:0}]
+		                		//return [{x:10,y:15},{x:15,y:20},{x:20,y:25}]
+		                })()
+		            }]
+		        });
+				} //end of display chart 2
+		    });
+		});
+		</script>
+	</head>
+	<body>
+		<h1> Pop vs. Holiday Song Frequency of Tweets </h1>
+		<button id ="1" class="SIO-button pure-button">"Shake it Off"</button>
+		<button id ="2" class="AATB-button pure-button">"All About that Bass"</button>
+		<button class="HSH-button pure-button">"Habits Stay High"</button>
+		<div id="container" class="hidden" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+		<div id="container2" class="hidden" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+  </body>
+</html>

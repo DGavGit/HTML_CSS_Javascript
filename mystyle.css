@@ -1,0 +1,184 @@
+body{
+	background-color: #ecf0f1;
+}
+h1{
+	text-align: center;
+	font-size: 48px;
+	color:#ecf0f1;
+	background-color: #7f8c8d;
+	border-style: solid;
+	border-radius: 8px;
+	border-color: #34495e;
+}
+h2{
+	text-align: center;
+	padding-bottom: 20px;
+}
+.SIO-button{
+	margin-left:10%;
+	float: left;
+	color:white;
+	border-radius: 8px;
+	text-shadow: 0 1px 1px #ecf0f1;
+	background: #3498db;
+	font-size: 100%;
+	font-family: Copperplate Gothic Light;
+}
+.SIO-button:hover{
+	background: #2980b9;
+	cursor: pointer;
+	cursor: hand;
+}
+.AATB-button{
+	color:white;
+	float: left;
+	border-radius: 8px;
+	text-shadow: 0 1px 1px #ecf0f1;
+	background: #3498db;
+	font-size: 100%;
+	font-family: Copperplate Gothic Light;
+}
+.AATB-button:hover{
+	background: #2980b9;
+	cursor: pointer;
+	cursor: hand;
+}
+.HSH-button{
+	color:white;
+	float: left;
+	border-radius: 8px;
+	text-shadow: 0 1px 1px #ecf0f1;
+	background: #3498db;
+	font-size: 100%;
+	font-family: Copperplate Gothic Light;
+}
+.HSH-button:hover{
+	background: #2980b9;
+	cursor: pointer;
+	cursor: hand;
+}
+.BW-button{
+	color:white;
+	float: left;
+	border-radius: 8px;
+	text-shadow: 0 1px 1px #ecf0f1;
+	background: #3498db;
+	font-size: 100%;
+	font-family: Copperplate Gothic Light;
+}
+.BW-button:hover{
+	background: #2980b9;
+	cursor: pointer;
+	cursor: hand;
+}
+.LMH-button{
+	margin-right: 5%;
+	float:left;
+	color:white;
+	border-radius: 8px;
+	text-shadow: 0 1px 1px #ecf0f1;
+	background: #3498db;
+	font-size: 100%;
+	font-family: Copperplate Gothic Light;
+}
+.LMH-button:hover{
+	background: #2980b9;
+	cursor: pointer;
+	cursor: hand;
+}
+div.hidden{
+	visibility: hidden;
+}
+div.visible{
+	visibility: visible; 
+}
+div.divider{
+	width: 100%;
+	height: 50px;
+	background-color: #ecf0f1;
+	float: left;
+}
+.AIWFCIY-button{
+	margin-left:4%;
+	float: left;
+	color:white;
+	border-radius: 8px;
+	text-shadow: 0 1px 1px #ecf0f1;
+	background: #3498db;
+	font-size: 100%;
+	font-family: Copperplate Gothic Light;
+}
+.AIWFCIY-button:hover{
+	background: #2980b9;
+	cursor: pointer;
+	cursor: hand;
+}
+.DYWTBAS-button{
+	color:white;
+	float: left;
+	border-radius: 8px;
+	text-shadow: 0 1px 1px #ecf0f1;
+	background: #3498db;
+	font-size: 100%;
+	font-family: Copperplate Gothic Light;
+}
+.DYWTBAS-button:hover{
+	background: #2980b9;
+	cursor: pointer;
+	cursor: hand;
+}
+.RATCT-button{
+	color:white;
+	float: left;
+	border-radius: 8px;
+	text-shadow: 0 1px 1px #ecf0f1;
+	background: #3498db;
+	font-size: 100%;
+	font-family: Copperplate Gothic Light;
+}
+.RATCT-button:hover{
+	background: #2980b9;
+	cursor: pointer;
+	cursor: hand;
+}
+.divider2{
+	float: left;
+	width: 100%;
+	height: 1px;
+}
+.JBR-button{
+	color:white;
+	float: left;
+	position: relative;
+	left:33%;
+	border-radius: 8px;
+	text-shadow: 0 1px 1px #ecf0f1;
+	background: #3498db;
+	font-size: 100%;
+	font-family: Copperplate Gothic Light;
+}
+.JBR-button:hover{
+	background: #2980b9;
+	cursor: pointer;
+	cursor: hand;
+}
+.FN-button{
+	margin-right: 5%;
+	margin-left: 33%;
+	float:left;
+	position: relative;
+	color:white;
+	border-radius: 8px;
+	text-shadow: 0 1px 1px #ecf0f1;
+	background: #3498db;
+	font-size: 100%;
+	font-family: Copperplate Gothic Light;
+}
+.FN-button:hover{
+	background: #2980b9;
+	cursor: pointer;
+	cursor: hand;
+}
+#container{
+	padding-top: 50px;
+}
