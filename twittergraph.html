@@ -74,63 +74,90 @@
 							callback(null, response);
 						});
 					},
-					get_json_pop2: function(callback) {
-						$.getJSON("http://cooper-union-search-proxy.herokuapp.com/twitter/search/all%20about%20that%20bass", function(response){
-							callback(null, response);
-						});
-					},
-					get_json_pop3: function(callback) {
-						$.getJSON("http://cooper-union-search-proxy.herokuapp.com/twitter/search/habits%20stay%20high", function(response){
-							callback(null, response);
-						});
-					},
-					get_json_pop4: function(callback) {
-						$.getJSON("http://cooper-union-search-proxy.herokuapp.com/twitter/search/black%20widow", function(response){
-							callback(null, response);
-						});
-					},
-					get_json_pop5: function(callback) {
-						$.getJSON("http://cooper-union-search-proxy.herokuapp.com/twitter/search/love%20me%20harder", function(response){
-							callback(null, response);
-						});
-					},
+
+					// get_json_pop2: function(callback) {
+					// 	$.getJSON("http://cooper-union-search-proxy.herokuapp.com/twitter/search/all%20about%20that%20bass", function(response){
+					// 		callback(null, response);
+					// 	});
+					// },
+					// get_json_pop3: function(callback) {
+					// 	$.getJSON("http://cooper-union-search-proxy.herokuapp.com/twitter/search/habits%20stay%20high", function(response){
+					// 		callback(null, response);
+					// 	});
+					// },
+					// get_json_pop4: function(callback) {
+					// 	$.getJSON("http://cooper-union-search-proxy.herokuapp.com/twitter/search/black%20widow", function(response){
+					// 		callback(null, response);
+					// 	});
+					// },
+					// get_json_pop5: function(callback) {
+					// 	$.getJSON("http://cooper-union-search-proxy.herokuapp.com/twitter/search/love%20me%20harder", function(response){
+					// 		callback(null, response);
+					// 	});
+					// },
 					get_json_chr1: function(callback) {
 						$.getJSON("http://cooper-union-search-proxy.herokuapp.com/twitter/search/all%20I%20want%20for%20christmas%20is%20you", function(response){
 							callback(null, response);
 						});
-					},
-					get_json_chr2: function(callback) {
-						$.getJSON("http://cooper-union-search-proxy.herokuapp.com/twitter/search/do%20you%20want%20to%20build%20a%20snowman", function(response){
-							callback(null, response);
-						});
-					},
-					get_json_chr3: function(callback) {
-						$.getJSON("http://cooper-union-search-proxy.herokuapp.com/twitter/search/rockin'%20around%20the%20christmas%20tree", function(response){
-							callback(null, response);
-						});
-					},
-					get_json_chr4: function(callback) {
-						$.getJSON("http://cooper-union-search-proxy.herokuapp.com/twitter/search/jingle%20bell%20rock", function(response){
-							callback(null, response);
-						});
-					},
-					get_json_chr5: function(callback) {
-						$.getJSON("http://cooper-union-search-proxy.herokuapp.com/twitter/search/feliz%20navidad", function(response){
-							callback(null, response);
-						});
-					}
+					}//,
+
+					// get_json_chr2: function(callback) {
+					// 	$.getJSON("http://cooper-union-search-proxy.herokuapp.com/twitter/search/do%20you%20want%20to%20build%20a%20snowman", function(response){
+					// 		callback(null, response);
+					// 	});
+					// },
+					// get_json_chr3: function(callback) {
+					// 	$.getJSON("http://cooper-union-search-proxy.herokuapp.com/twitter/search/rockin'%20around%20the%20christmas%20tree", function(response){
+					// 		callback(null, response);
+					// 	});
+					// },
+					// get_json_chr4: function(callback) {
+					// 	$.getJSON("http://cooper-union-search-proxy.herokuapp.com/twitter/search/jingle%20bell%20rock", function(response){
+					// 		callback(null, response);
+					// 	});
+					// },
+					// get_json_chr5: function(callback) {
+					// 	$.getJSON("http://cooper-union-search-proxy.herokuapp.com/twitter/search/feliz%20navidad", function(response){
+					// 		callback(null, response);
+					// 	});
+					// }
 				}, function(err, results) {
 				    // console.log(results.get_json_pop1.statuses[0].text);
 				    // console.log(results);
 				    if(elementID === 1) {
 				    	var song = results.get_json_pop1.statuses;
+				    	console.log(song);
 				    } else if(elementID === 2) {
 				    	var song = results.get_json_pop2.statuses;
 
-				    }
+				    } else if(elementID === 3) {
+				    	var song = results.get_json_pop3.statuses;
 
+				    } else if(elementID === 4) {
+				    	var song = results.get_json_pop4.statuses;
+
+				    } else if(elementID === 5) {
+				    	var song = results.get_json_pop5.statuses;
+
+				    } else if(elementID === 6) {
+				    	var song = results.get_json_pop6.statuses;
+
+				    } else if(elementID === 7) {
+				    	var song = results.get_json_pop7.statuses;
+
+				    } else if(elementID === 8) {
+				    	var song = results.get_json_pop8.statuses;
+
+				    } else if(elementID === 9) {
+				    	var song = results.get_json_pop9.statuses;
+
+				    } else if(elementID === 10) {
+				    	var song = results.get_json_pop10.statuses;
+
+				    }
 				    // if(dataSet === 1) {
 				    // var song = results.get_json_pop1.statuses;
+				    console.log(song);
 				    var songTimes = [];
 				    var songUTCTimes = [];
 				    var intTimes = [];
