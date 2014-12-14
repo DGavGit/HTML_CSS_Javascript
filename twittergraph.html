@@ -13,13 +13,52 @@
 		    //This is where I'm going to be putting the clicked actions
 		    var SIOclick =0;
 		   	$(".SIO-button").click(function(){
-
 		   		//get the id of the element clicked on
 		   		var elementID = $(this).attr("id");
 		   		displayChart(elementID, "#container");
 		   		$("div#container").removeClass("hidden").addClass("visible");
 		   	});
 		   	$(".AATB-button").click(function(){
+		   		var elementID = $(this).attr("id");
+		   		displayChart(elementID, "#container")
+		   		$("div#container").removeClass("hidden").addClass("visible");
+		   	});
+		   	$(".HSH-button").click(function(){
+		   		var elementID = $(this).attr("id");
+		   		displayChart(elementID, "#container")
+		   		$("div#container").removeClass("hidden").addClass("visible");
+		   	});
+		   	$(".BW-button").click(function(){
+		   		var elementID = $(this).attr("id");
+		   		displayChart(elementID, "#container")
+		   		$("div#container").removeClass("hidden").addClass("visible");
+		   	});
+		   	$(".LMH-button").click(function(){
+		   		var elementID = $(this).attr("id");
+		   		displayChart(elementID, "#container")
+		   		$("div#container").removeClass("hidden").addClass("visible");
+		   	});
+		   	$(".AIWFCIY-button").click(function(){
+		   		var elementID = $(this).attr("id");
+		   		displayChart2(elementID, "#container2")
+		   		$("div#container2").removeClass("hidden").addClass("visible");
+		   	});
+		   	$(".DYWTBAS-button").click(function(){
+		   		var elementID = $(this).attr("id");
+		   		displayChart2(elementID, "#container2")
+		   		$("div#container2").removeClass("hidden").addClass("visible");
+		   	});
+		   	$(".RATCT-button").click(function(){
+		   		var elementID = $(this).attr("id");
+		   		displayChart2(elementID, "#container2")
+		   		$("div#container2").removeClass("hidden").addClass("visible");
+		   	});
+		   	$(".JBR-button").click(function(){
+		   		var elementID = $(this).attr("id");
+		   		displayChart2(elementID, "#container2")
+		   		$("div#container2").removeClass("hidden").addClass("visible");
+		   	});
+		   	$(".FN-button").click(function(){
 		   		var elementID = $(this).attr("id");
 		   		displayChart2(elementID, "#container2")
 		   		$("div#container2").removeClass("hidden").addClass("visible");
@@ -176,7 +215,7 @@
 		                }
 		            },
 		            title: {
-		                text: 'Shake it Off',
+		                text: '',
 		                style: {"color":'#2c3e50', "fontsize": '16px'}
 		            },
 		            xAxis: {
@@ -262,7 +301,7 @@
 		                }
 		            },
 		            title: {
-		                text: 'All About that Bass',
+		                text: '',
 		                style: {"color":'#2c3e50', "fontsize": '16px'}
 		            },
 		            xAxis: {
@@ -329,8 +368,19 @@
 		<h1> Pop vs. Holiday Song Frequency of Tweets </h1>
 		<button id ="1" class="SIO-button pure-button">"Shake it Off"</button>
 		<button id ="2" class="AATB-button pure-button">"All About that Bass"</button>
-		<button class="HSH-button pure-button">"Habits Stay High"</button>
+		<button id ="3" class="HSH-button pure-button">"Habits Stay High"</button>
+		<button id ="4" class="BW-button pure-button">"BLack Widow"</button>
+		<button id ="5" class="LMH-button pure-button">"Love Me Harder"</button>
+		<!-- <div id="container" class="hidden" style="min-width: 310px; height: 400px; margin: 0 auto"></div> -->
 		<div id="container" class="hidden" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+		<div class="divider"></div>
+		<h2> -OR- </h2>
+		<button id ="6" class="AIWFCIY-button pure-button">"All I want for Christmas"</button>
+		<button id ="7" class="DYWTBAS-button pure-button">"Do You Want to Build a Snowman?"</button>
+		<button id ="8" class="RATCT-button pure-button">"Rockin Around the Christmas Tree"</button>
+		<div class="divider2"></div>
+		<button id ="9" class="JBR-button pure-button">"Jingle Bell Rock"</button>
+		<button id ="10" class="FN-button pure-button">"Feliz Navidad"</button>
 		<div id="container2" class="hidden" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
   </body>
