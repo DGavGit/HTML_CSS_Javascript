@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>instagram</title>
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/async/0.9.0/async.js"></script>
+		<script src="http://code.highcharts.com/highcharts.js"></script>
+		<script src="http://code.highcharts.com/modules/exporting.js"></script>
+		<script>	
+			$(function () {
+		    $(document).ready(function () {
+		    //where I draw data from the api
+		    var getRate = function(callback) {
+
+
+				    async.auto({
+
+					get_json_pop1: function(callback) {
+						$.getJSON("http://cooper-union-search-proxy.herokuapp.com/twitter/search/all%20about%20that%20bass", function(response){
+							callback(null, response);
+						});
+					}
+				}, function(err, results) {
+				    // console.log(results.get_json_pop1.statuses[0].text);
+				    // console.log(results);
+				    var song = results.get_json_pop1.statuses;
+				    var songTimes = [];
+				    var songUTCTimes = [];
+				    var intTimes = [];
+				    var songTimeDiff;
+				    var floor = Math.floor;
+				    for(i in song) {
+				    	songTimes.push(song[i].created_at);
+				    	var timeString = new Date(song[i].created_at);
+				    	var utcTime = Date.parse(timeString);
+				    	songUTCTimes.push(utcTime);
+				    	console.log(utcTime);
+				    }
+
+				    for(i = 0; i<songUTCTimes.length; i++){
+				    	intTimes[i] = floor(songUTCTimes[i]);
+				    	console.log(intTimes[i]);
+				    }
+				    intTimes.sort();
+				    songTimeDiff = intTimes[14]-intTimes[0];
+				    humanReadable = ((songTimeDiff*.001)/15)*60;
+				    console.log(songTimeDiff, humanReadable)
+
+				    callback(humanReadable);
+
+				});
+			} //end function getRate()
+		        Highcharts.setOptions({
+		            global: {
+		                useUTC: false
+		            },
+		            colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
+		        });
+
+		        $('#container').highcharts({
+		            chart: {
+		                type: 'spline',
+		                animation: Highcharts.svg, // don't animate in old IE
+		                marginRight: 10,
+		                //backgroundColor: '#E67E22',
+		                events: {
+		                    load: function () {
+
+		                        // set up the updating of the chart each second
+		                        var series = this.series[0];
+		                        setInterval(function () {
+		 
+		                        	getRate(function(humanReadable){
+		                        		console.log("The callback worked, and the rate is:", humanReadable);	
+		        					    var x = (new Date()).getTime(), // current time
+		                                y = humanReadable;
+		                            	series.addPoint([x, y], true, true);
+		                            	// console.log(series)
+		                        	});
+		       
+		                        }, 10000);
+		                    }
+		                }
+		            },
+		            title: {
+		                text: 'All About that Bass',
+		                style: {"color":'#2c3e50', "fontsize": '16px'}
+		            },
+		            xAxis: {
+		            	title:{
+		            		text: 'Time'
+		            	},
+		                type: 'datetime',
+		                //lineColor: '#ecf0f1',
+		                tickPixelInterval: 150
+		            },
+		            plotOptions:{
+		            	line: {
+		            		//color: '#ecf0f1'
+		            	}
+		            },
+		            spline: {
+		            	//color: '#ecf0f1'
+		            },
+		            yAxis: {
+		                title: {
+		                    text: 'Tweets per min.'
+		                },
+		                //lineColor: '#ecf0f1',
+		                plotLines: [{
+		                    value: 0,
+		                    width: 1,
+		                    //color: '#ecf0f1'
+		                }]
+		            },
+		            tooltip: {
+		                formatter: function () {
+		                    return '<b>' + this.series.name + '</b><br/>' +
+		                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+		                        Highcharts.numberFormat(this.y, 2);
+		                }
+		            },
+		            legend: {
+		                enabled: false
+		            },
+		            exporting: {
+		                enabled: false
+		            },
+		            series: [{
+		                name: 'SIO',
+		                data: (function(){
+		                	        getRate(function(humanReadable){
+		                        		console.log("The callback worked, and the rate is:", humanReadable);	
+		        					    var x = (new Date()).getTime(), // current time
+		                                y = humanReadable;
+		                            	return [{x:x, y:humanReadable}];
+		                            	// console.log(series)
+		                        	});
+		                        return [{x:(new Date()).getTime(), y:0},{x:(new Date()).getTime(), y:0},{x:(new Date()).getTime(), y:0},{x:(new Date()).getTime(), y:0},{x:(new Date()).getTime(), y:0},{x:(new Date()).getTime(), y:0},{x:(new Date()).getTime(), y:0}]
+		                		//return [{x:10,y:15},{x:15,y:20},{x:20,y:25}]
+		                })()
+		            }]
+		        });
+		    });
+		});
+		</script>
+	</head>
+	<body>
+		<h1> "All About that Bass" -Meghan Trainor </h1>
+		<div id="container" class="visible" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+  </body>
+</html>
